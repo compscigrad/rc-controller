@@ -1,11 +1,12 @@
 let throttle = 0
-let stop = 0
+let Alert = 0
 let steering = 0
 radio.setGroup(8)
 basic.forever(function () {
     steering = 0
     if (input.buttonIsPressed(Button.AB)) {
-        stop = 100
+        let stop = 0
+        Alert = 100
         radio.sendValue("stop", stop)
         while (true) {
             basic.showLeds(`
@@ -63,6 +64,7 @@ basic.forever(function () {
             . . # . .
             `)
         throttle = -100
+        radio.sendString("Reverse")
     }
     radio.sendValue("throttle", throttle)
     radio.sendValue("steering", steering)
